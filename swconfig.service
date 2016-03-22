@@ -1,0 +1,13 @@
+[Unit]
+Description=Configure Network Switch before Network starts
+Before=network.target
+Before=arno-iptables-firewall.service
+#Before=systemd-timesyncd.service
+Before=systemd-networkd.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/swconfig.sh
+
+[Install]
+WantedBy=multi-user.target
