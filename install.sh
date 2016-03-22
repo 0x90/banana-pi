@@ -8,17 +8,14 @@ if [[ $EUID -ne 0 ]]; then
   sudo pacman -Sy --needed nfs-utils htop openssh autofs alsa-utils alsa-firmware alsa-lib alsa-plugins git zsh wget base-devel yajl diffutils libnewt dialog wpa_supplicant wireless_tools iw crda lshw hostapd
 
   echo "Installing package-query and yaourt.."
-  wget https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
-  tar -xvzf package-query.tar.gz
+  git clone https://aur.archlinux.org/package-query.git
   cd package-query
   makepkg -si
   cd ..
-  wget https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
-  tar -xvzf yaourt.tar.gz
+  git clone https://aur.archlinux.org/yaourt.git
   cd yaourt
   makepkg -si
-  cd ../
-  rm -rf package-query/ package-query.tar.gz yaourt/ yaourt.tar.gz
+  cd ..
 
   echo "Installing blackarch. Don't forget to add http://mirror.yandex.ru/mirrors/blackarch/ to /etc/pacman.conf"
   curl -O https://blackarch.org/strap.sh
